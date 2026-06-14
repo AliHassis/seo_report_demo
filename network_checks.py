@@ -81,7 +81,7 @@ def check_sitemap(base_url: str) -> dict:
                 return {"exists": True, "path": path, "urls_count": urls_count}
         except:
             pass
-    return {"exists": False}
+       return {"exists": False, "path": "", "urls_count": 0}
 
 
 def check_broken_links(soup, base_url: str, domain: str, max_links: int = 20, lang: str = "ar") -> tuple:
