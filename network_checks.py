@@ -47,7 +47,7 @@ def check_ssl(domain: str) -> dict:
     try:
         ctx = ssl.create_default_context()
         with ctx.wrap_socket(socket.socket(), server_hostname=domain) as s:
-            s.settimeout(8)
+            s.settimeout(15)
             s.connect((domain, 443))
             cert = s.getpeercert()
             exp = datetime.strptime(cert["notAfter"], "%b %d %H:%M:%S %Y %Z")
