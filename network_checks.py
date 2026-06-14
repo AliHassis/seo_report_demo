@@ -61,7 +61,7 @@ def check_ssl(domain: str) -> dict:
 
 def check_robots(base_url: str) -> dict:
     try:
-        r = requests.get(f"{base_url}/robots.txt", headers=HEADERS, timeout=8, verify=False)
+        r = requests.get(f"{base_url}/robots.txt", headers=HEADERS, timeout=15, verify=False)
         if r.status_code == 200 and len(r.text) > 10:
             has_sitemap = "sitemap" in r.text.lower()
             has_disallow = "disallow" in r.text.lower()
@@ -75,7 +75,7 @@ def check_sitemap(base_url: str) -> dict:
     paths = ["/sitemap.xml", "/sitemap_index.xml", "/sitemap/sitemap.xml", "/sitemap/"]
     for path in paths:
         try:
-            r = requests.get(f"{base_url}{path}", headers=HEADERS, timeout=8, verify=False)
+            r = requests.get(f"{base_url}{path}", headers=HEADERS, timeout=15, verify=False)
             if r.status_code == 200 and ("<url" in r.text or "<sitemap" in r.text):
                 urls_count = r.text.count("<url>") + r.text.count("<sitemap>")
                 return {"exists": True, "path": path, "urls_count": urls_count}
