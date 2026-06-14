@@ -106,7 +106,7 @@ def check_broken_links(soup, base_url: str, domain: str, max_links: int = 20, la
 
         text = a.get_text(strip=True)[:40] or t("no_text", lang)
         try:
-            r = requests.head(full_url, headers=HEADERS, timeout=5, verify=False, allow_redirects=True)
+            r = requests.head(full_url, headers=HEADERS, timeout=15, verify=False, allow_redirects=True)
             status_code = r.status_code
         except:
             status_code = 0
