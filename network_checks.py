@@ -112,6 +112,7 @@ def check_broken_links(soup, base_url: str, domain: str, max_links: int = 20, la
             status_code = 0
 
         checked += 1
+        time.sleep(0.5)
         link_type = t("broken_internal", lang) if domain in full_url else t("broken_external", lang)
         if status_code >= 400 or status_code == 0:
             broken.append({
